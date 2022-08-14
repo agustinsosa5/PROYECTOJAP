@@ -6,7 +6,15 @@ async function listadoDeAutos() {
       const data = await respuesta.json();
       return data;
     } 
-  
   } 
   
-  
+  document.addEventListener('DOMContentLoaded', async function(){
+    let datos = await listadoDeAutos();
+    console.log(datos.products);
+    datos.products.forEach(autos => {
+       const html= document.getElementsByClassName('.listadoAutos');
+        html.innerHTML += 'hola';
+        
+    });
+
+  })
