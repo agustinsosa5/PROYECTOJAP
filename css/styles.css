@@ -1,3 +1,24 @@
+.login #email_error,
+.login #pass_error{
+margin-top: 5;
+width: 100%;
+font-size: 18;
+color: rgb(226, 17, 17);
+background-color: rgb(219, 141, 141);
+text-align: center;
+padding: 3px 8px;
+border-radius: 3px;
+border: 1px solid #e08181;
+display: none;
+
+}
+
+
+
+
+
+
+
 .jumbotron,
 .card-body,
 .container,
