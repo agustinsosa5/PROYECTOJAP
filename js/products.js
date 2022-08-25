@@ -1,6 +1,6 @@
-async function listadoDeAutos() {
+async function listado() {
   const respuesta = await fetch(
-    "https://japceibal.github.io/emercado-api/cats_products/101.json"
+    `${PRODUCTS_URL + localStorage.catID + EXT_TYPE}`
   );
   if (respuesta.ok) {
     const data = await respuesta.json();
@@ -11,28 +11,34 @@ async function listadoDeAutos() {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
-  let datos = await listadoDeAutos();
-  let autos = "";
-  datos.products.forEach((auto) => {
-    autos += `
+  let datos = await listado();
+  let articulos = "";
+  datos.products.forEach((articulo) => {
+    document.querySelector("#titulo_product").innerHTML =
+      `<h2>Productos</h2>
+    <h4>Verás aqui todos los productos de la categoría` +
+      " " +
+      datos.catName +
+      `</h4>`;
+    articulos += `
     <div class="list-group" id="cat-list-container">
     <div class="list-group-item list-group-item-action">
     <div class="row">
         <div class="col-3">
-            <img src= "${auto.image}" alt="product image" class="img-thumbnail">
+            <img src= "${articulo.image}" alt="product image" class="img-thumbnail">
         </div>
         <div class="col">
             <div class="d-flex w-100 justify-content-between">
                 <div class="mb-1">
-                <h4>${auto.name} - ${auto.currency} : ${auto.cost}</h4> 
-                <p> ${auto.description}</p> 
+                <h4>${articulo.name} - ${articulo.currency} : ${articulo.cost}</h4> 
+                <p> ${articulo.description}</p> 
                 </div>
-                <small class="text-muted">${auto.soldCount} Vendidos </small> 
+                <small class="text-muted">${articulo.soldCount} Vendidos </small> 
             </div>
         </div>
         </div>    
         </div>
        `;
-    document.getElementById("catalogo").innerHTML = autos;
+    document.getElementById("catalogo").innerHTML = articulos;
   });
 });
