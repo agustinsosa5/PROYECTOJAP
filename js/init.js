@@ -39,3 +39,8 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+document.addEventListener('DOMContentLoaded', ()=> {
+const dato = localStorage.getItem('CorreoElectronico');
+document.querySelectorAll('#navbarNav').innerHTML+= `<p class="text-center">${dato}</p>`
+});

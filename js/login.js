@@ -4,7 +4,8 @@ const correo = document.querySelector("#mail");
 const password = document.querySelector("#pass");
 const boton = document.querySelector("#mybtn");
 
-boton.addEventListener("click", () => {
+boton.addEventListener("click",() => {
+  localStorage.setItem("CorreoElectronico", correo.value);
   if (correo.value == "") {
     validacionCorreo();
   } else if (password.value == "") {
@@ -12,10 +13,6 @@ boton.addEventListener("click", () => {
   } else {
     window.location.replace("portada.html");
   }
-
-const valorcorreo = correo.value;
-localStorage.setItem('Correo', 'valorcorreo');
-localStorage.getItem('Correo');
 });
 
 function validacionCorreo() {
@@ -27,4 +24,3 @@ function validacionPass() {
   password.style.border = "1px solid red";
   passError.style.display = "block";
 }
-
