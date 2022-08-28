@@ -7,13 +7,15 @@ const boton = document.querySelector("#mybtn");
 boton.addEventListener("click", () => {
   if (correo.value == "") {
     validacionCorreo();
-  } 
-   else if (password.value == "") {
+  } else if (password.value == "") {
     validacionPass();
-  } 
-  else {
+  } else {
     window.location.replace("portada.html");
   }
+
+const valorcorreo = correo.value;
+localStorage.setItem('Correo', 'valorcorreo');
+localStorage.getItem('Correo');
 });
 
 function validacionCorreo() {
@@ -25,3 +27,4 @@ function validacionPass() {
   password.style.border = "1px solid red";
   passError.style.display = "block";
 }
+
