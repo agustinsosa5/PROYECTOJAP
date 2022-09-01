@@ -41,6 +41,9 @@ let getJSONData = function(url){
 }
 
 document.addEventListener('DOMContentLoaded', ()=> {
-const dato = localStorage.getItem('CorreoElectronico');
-document.querySelectorAll('#navbarNav').innerHTML+= `<p class="text-center">${dato}</p>`
+let capturoUser = localStorage.getItem('CorreoElectronico');
+let agregoLi = document.getElementsByTagName('li');
+let li = agregoLi[3];
+li.innerHTML = `<a class="text-light nav-link">${capturoUser}</a>`;
 });
+
