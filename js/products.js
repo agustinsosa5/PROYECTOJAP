@@ -1,9 +1,18 @@
 const boton_filtrar = document.getElementById("rangeFilter");
 const boton_limpiar = document.getElementById("clearFilter");
 const catalogo = document.getElementById("catalogo");
-const ascen = document.getElementById("btn-asc");
-const descen = document.getElementById("btn-desc");
-const Rel = document.getElementById("btn-rel");
+const ascen = document.getElementById('btnasc');
+const descen = document.getElementById("btndesc");
+const Rel = document.getElementById("btnrel");
+const ORDER_ASC_BY_NAME = 'ascendente';
+const ORDER_DESC_BY_NAME = 'descendente';
+const ORDER_BY_SOLD_COUNT = 'rel.';
+let articulos = [];
+let currentSortCriteria = undefined;
+let minCount = undefined;
+let maxCount = undefined;
+
+
 
 async function listado() {
   const respuesta = await fetch(
@@ -15,10 +24,13 @@ async function listado() {
   } else {
     throw new Error(respuesta.status);
   }
-};
-//LISTA LOS ARTICULOS//
 
-document.addEventListener("DOMContentLoaded", async function cargarArt() {
+};
+
+
+//LISTA LOS ARTICULOS//
+ 
+document.addEventListener("DOMContentLoaded", async function cargarArt(){
   let datos = await listado();
   let articulos = "";
   datos.products.forEach((articulo) => {
@@ -47,58 +59,139 @@ document.addEventListener("DOMContentLoaded", async function cargarArt() {
     catalogo.innerHTML = articulos;
   });
 
-  //FILTRADO POR PRECIO DE PRODUCTOS//
+  //FILTRADO POR PRECIO DE PRODUCTOS MIN Y MAX //
 
   boton_filtrar.addEventListener("click", () => {
     const Filtrado = Object.values(datos.products); //paso de obj a array
     let min = document.getElementById("min").value;
     let max = document.getElementById("max").value;
     let htmldeproduct = "";
-    Filtrado.filter((filtro) => {
-      if (filtro.cost >= min  &&  filtro.cost <= max) {
+    Filtrado.filter((articulo) => {
+      if (articulo.cost >= min  &&  articulo.cost <= max) {
         htmldeproduct += ` <div class="list-group" id="cat-list-container">
       <div class="list-group-item list-group-item-action">
       <div class="row">
           <div class="col-3">
-              <img src= "${filtro.image}" alt="product image" class="img-thumbnail">
+              <img src= "${articulo.image}" alt="product image" class="img-thumbnail">
           </div>
           <div class="col">
               <div class="d-flex w-100 justify-content-between">
                   <div class="mb-1">
-                  <h4>${filtro.name} - ${filtro.currency} : ${filtro.cost}</h4> 
-                  <p> ${filtro.description}</p> 
+                  <h4>${articulo.name} - ${articulo.currency} : ${articulo.cost}</h4> 
+                  <p> ${articulo.description}</p> 
                   </div>
-                  <small class="text-muted text-align">${filtro.soldCount} Vendidos </small> 
+                  <small class="text-muted text-align">${articulo.soldCount} Vendidos </small> 
               </div>
           </div>
           </div>    
           </div>
          `
         catalogo.innerHTML = htmldeproduct;
-      } 
-      //ORDENAS DE FORMA ASCENDENTE//
+      }     
+               
+    });   
+       
+    
+  });    
+
+
+  // LIMPIAR INPUT Y MOSTRAR ARTICULOS//
+  boton_limpiar.onclick = () => {
+    document.getElementById("min").value = "";
+    document.getElementById("max").value = "";
+    cargarArt();
+  };
+
+});
+
+
+
+  //Funcion para Ordenar //   
+  function sortCategories (criteria, array){
+    let result = [];
+    if (criteria === ORDER_ASC_BY_NAME) {
+        result = array.sort(function(a, b) {
+            if ( a.cost < b.cost ){ return -1 };
+            if ( a.cost > b.cost ){ return 1};
+            return 0;
+        });
+    }else if (criteria === ORDER_DESC_BY_NAME){
+        result = array.sort(function(a, b) {
+            if ( a.cost > b.cost ){ return -1};
+            if ( a.cost < b.cost ){ return 1};
+            return 0;
+        });
+    }else if (criteria === ORDER_BY_SOLD_COUNT){
+        result = array.sort(function(a, b) {
+          let aCount = parseInt(a.soldCount);
+          let bCount = parseInt(b.soldCount);
+          
+          if ( aCount > bCount ){ return -1; }
+          if ( aCount < bCount ){ return 1; }
+          return 0;
+        });
+      }
       
-    });
+      
+      return result;  
+    };
+     
+      function showCategoriesList(){
+   
+        let htmlContentToAppend = "";
+        for(let i = 0; i < articulos.length; i++){
+            let category = articulos[i];
+    
+            if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
+                ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
+    
+                htmlContentToAppend += `
+                <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="${category.imgSrc}" alt="${category.description}" class="img-thumbnail">
+                        </div>
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">${category.name}</h4>
+                                <small class="text-muted">${category.productCount} artículos</small>
+                            </div>
+                            <p class="mb-1">${category.description}</p>
+                        </div>
+                    </div>
+                </div>
+                `
+            }
+    
+            document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+        }
+    }
 
+      function sortAndShowCategories(sortCriteria, categoriesArray){
+    currentSortCriteria = sortCriteria;
+  
+    if(categoriesArray != undefined){
+        articulos = categoriesArray;
+    }
+  
+    articulos = sortCategories(currentSortCriteria, articulos);
+  
+    //Muestro las categorías ordenadas
+    showCategoriesList();
+  }
+   
 
-
-
-
-
-
-
-
-
-    });    
-      // LIMPIAR INPUT Y MOSTRAR ARTICULOS//
-        boton_limpiar.onclick = () => {
-          document.getElementById("min").value = "";
-          document.getElementById("max").value = "";
-          cargarArt();
-        };
-
+  ascen.addEventListener("click", function(){
+    sortAndShowCategories(ORDER_ASC_BY_NAME);    
   });
-
+  
+  descen.addEventListener("click", function(){
+    sortAndShowCategories(ORDER_DESC_BY_NAME);
+  });
+  
+  Rel.addEventListener("click", function(){
+    sortAndShowCategories(ORDER_BY_SOLD_COUNT);
+  });
 
 
 
