@@ -196,7 +196,19 @@ document.addEventListener("DOMContentLoaded", async function cargarArt(){
 
 
 
+//BUSCADOR 
 
+document.addEventListener('keyup' , e=>{
+  if (e.target.matches('#buscador')) {
+    document.querySelectorAll('.list-group-item').forEach(elem =>{
+      elem.textContent.toLocaleLowerCase().includes(e.target.value)
+      ? elem.classList.remove('filtro')
+      : elem.classList.add('filtro');
+      
+    })
+  }
+
+})
   
 
 

@@ -54,31 +54,29 @@
       <div class="row"> 
         
         <div class="col text-end"> 
-          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
-               
-            <input type="radio" class="btn-check" id="btnasc">            
-            <label class="btn btn-light" for="btnasc" ><i class="fa-solid fa-arrow-up-short-wide">$</i></label>
-            <input type="radio" class="btn-check" id="btndesc">            
-            <label class="btn btn-light" for="btndesc"><i class="fa-solid fa-arrow-down-short-wide">$</i></label> 
-            <input type="radio" class="btn-check" id="btnrel">     
-            <label class="btn btn-light" for="btnrel"><i class="fa-solid fa-arrow-down-short-wide">Rel</i></label> 
-
-           <!--  <button type="button" class="btn fa-solid fa-arrow-down-short-wide" id="btn_desc">$</button>           
+          
+          <!--  <button type="button" class="btn fa-solid fa-arrow-down-short-wide" id="btn_desc">$</button>           
             <button type="button" class="btn fa-solid fa-arrow-up-wide-short" id="btn_asc">$</button>
             <button type="button" class="btn fa-solid fa-arrow-down-short-wide" id="btn_rel">Rel</button> -->
-                        
-              
+            
+            
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+        <div class="container">
           <div class="row container p-0 m-0">
-            <div class="col">
-              <p class="font-weight-normal text-end my-2">Precio</p>
+            <div class="col text-end">
+              <div class="input-group rounded">
+                <input type="search" class="form-control rounded"  id="buscador" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                  <i class="fas fa-search"></i>
+                </span>
+              </div>
+              
             </div>
             <div class="col">
-              <input class="form-control" type="number" placeholder="min." id="min">
+              <input class="form-control text-end" type="number" placeholder="min." id="min">
             </div>
             <div class="col">
               <input class="form-control" type="number" placeholder="máx." id="max">
@@ -87,6 +85,14 @@
               <div class="btn-group" role="group">
                 <button class="btn btn-light btn-block" id="rangeFilter">Filtrar</button>
                 <button class="btn btn-link btn-sm" id="clearFilter" type="reset">Limpiar</button>
+                <div class="btn-group btn-group-toggle mt-2 mb-3" data-bs-toggle="buttons">
+                  
+                  <input type="radio" class="btn-check" id="btnasc">            
+                  <label class="btn btn-light" for="btnasc" ><i class="fa-solid fa-arrow-up-short-wide">$</i></label>
+                  <input type="radio" class="btn-check" id="btndesc">            
+                  <label class="btn btn-light" for="btndesc"><i class="fa-solid fa-arrow-down-short-wide">$</i></label> 
+                  <input type="radio" class="btn-check" id="btnrel">     
+                  <label class="btn btn-light" for="btnrel"><i class="fa-solid fa-arrow-down-short-wide">Rel</i></label> 
               </div>
             </div>
           </div>
