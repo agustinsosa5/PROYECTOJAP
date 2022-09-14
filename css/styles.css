@@ -17,9 +17,19 @@ display: none;
   display: none;
 }
 
+.checked {
+  color: orange;
+}
 
 
+#campocomentario {
+  width: 50%;
+  height: 100px;
+}
 
+#puntuacion {
+  width: 10%;
+}
 
 .jumbotron,
 .card-body,

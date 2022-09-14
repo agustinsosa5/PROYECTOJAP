@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -37,11 +38,30 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="container" id="datosProducto">      
     </div>
+    
+    <div class="container pt-3">
+      <h4>Comentar</h4>
+      
+      <div class="pb-2">Tu opinión:</div>
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="campocomentario" ></textarea>
+        </div>
+        <div class="pb-2 pt-3">Tu Puntuación:</div>
+        <select name="puntuacion" id="puntuacion" class="form-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <div class="pb-2 pt-3">
+        <button type="button" class="btn btn-primary" id="enviar">Enviar</button>
+      </div>
+      
+    </div>
+  </div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -64,6 +84,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <script src="js/products.js"></script>
 </body>
 
 </html>
