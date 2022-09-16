@@ -114,6 +114,8 @@ async function articuloElegido() {
           <p>${comentario.value}</p>
           </div>`;
           variablecomentarios.innerHTML += nuevocomentario;
+          comentario.value="";
+          puntuacion.value= 1;
           });
     });
     
