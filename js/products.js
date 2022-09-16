@@ -3,6 +3,7 @@ const boton_limpiar = document.getElementById("clearFilter");
 const catalogo = document.getElementById("catalogo");
 const ascen = document.getElementById('btnasc');
 const tituloproduct = document.getElementById('tituloproduct');
+console.log(tituloproduct);
 const descen = document.getElementById("btndesc");
 const Rel = document.getElementById("btnrel");
 const ORDER_ASC_BY_NAME = 'ascendente';
