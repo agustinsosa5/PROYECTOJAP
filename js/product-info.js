@@ -12,7 +12,10 @@ async function articuloElegido() {
     else {throw new Error(respuesta.status);}}; 
     
     
-    
+    function setID(id) {
+      localStorage.setItem("ID", id);
+      window.location = "product-info.html"      
+  }
     
     //cuando cargue la pagina , Crea el HTML con los datos del producto.
     document.addEventListener('DOMContentLoaded',async function mostrarArticulo(){ 
@@ -117,6 +120,26 @@ async function articuloElegido() {
           comentario.value="";
           puntuacion.value= 1;
           });
+
+
+         
+          //Mostrar-imagenes-relacionadas                 
+        let relacionadas= document.getElementById('imagenesrelacionadas');
+        for (let i = 0; i < elemento.relatedProducts.length; i++) {
+          const element = elemento.relatedProducts[i];
+          let juguete = "";
+          juguete = `
+          <div class="card border-light mb-2" style="width: 20rem;">          
+            <div onclick="setID(${element.id})"> 
+              <img src="${element.image}" class="img-thumbnail card-img-top" alt="imagenes del producto">
+              <span>${element.name}</span>
+            </div>          
+          </div>`;
+          relacionadas.innerHTML += juguete; }
+
+
+
+        
     });
     
         

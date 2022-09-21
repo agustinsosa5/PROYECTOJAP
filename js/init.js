@@ -44,6 +44,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
 let capturoUser = localStorage.getItem('CorreoElectronico');
 let agregoLi = document.getElementsByTagName('li');
 let li = agregoLi[3];
-li.innerHTML = `<a class="text-light nav-link">${capturoUser}</a>`;
+li.innerHTML = `<div class="dropdown">
+<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  ${capturoUser}
+</button>
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+  <li><a class="dropdown-item" href="./cart.html">Mi carrito</a></li>
+  <li><a class="dropdown-item" href="./my-profile.html">Mi perfil</a></li>
+  <li><a class="dropdown-item" href="./index.html">Cerrar Sesion</a></li>
+</ul>
+</div>`;
 });
 
