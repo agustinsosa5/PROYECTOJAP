@@ -37,10 +37,99 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <h2 class="text-center p-4">Carrito de compras</h2>      
+        <h4>Articulos a comprar</h4>
+        <div class="container text-center mb-5">
+          <div class="row align-items-center border-bottom">
+            <div class="col-2">              
+            </div>
+            <div class="col-2 ">
+              Nombre
+            </div>
+            <div class="col-2">
+              Costo
+            </div>            
+            <div class="col-2">
+              Cantidad
+            </div>
+            <div class="col-2">
+              Subtotal
+            </div>
+          </div>
+
+
+          <div class="row align-items-center border-bottom">
+            <div class="col-2" id="imagen">              
+            </div>
+            <div class="col-2" id="nombre">
+              Nombre
+            </div>
+            <div class="col-2" id="cost">
+              Costo
+            </div>            
+            <div class="col-2">
+              <input required minlength="1" type="number" id="cantProd" placeholder="1" value="1">
+            </div>
+            <div class="col-2" id="subtotal">
+              Subtotal
+            </div>
+          </div>
+          
+          
+        </div>
+        <!-- <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Nombre</th>
+              <th>Costo</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th id="imagen" scope="row"></th>
+              <td id="nombre">Nombre</td>
+              <td id="cost">Costo</td>
+              <td><input required minlength="1" type="number" id="cantProd" placeholder="1" value="1"></td>
+              <td id="subtotal"></td>
+            </tr>
+          </tbody>           -->
+      
+
+      <div class="envios">
+        <h4 class="pb-4">Tipo de envío</h4>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Premium 2 a 5 días (15%)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+          <label class="form-check-label" for="flexRadioDefault2">
+            Express 5 a 8 días (7%)
+          </label>
+        </div> 
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+          <label class="form-check-label" for="flexRadioDefault2">
+            Standard 12 a 15 días (5%)
+          </label>
+        </div>       
       </div>
-    </div>
+
+        <div class="direccionEnvios">
+          <h4 class="pt-4 pb-4">Direccion de envío</h4>
+          <div class="input-group row">
+            <div class="mb-4"><input type="text" placeholder="Calle"></div>
+            <div class="mb-4"><input type="text" placeholder="Numero"></div>
+            <div class="mb-4"><input type="text" placeholder="Esquina"></div>            
+          </div>
+
+    </div>   
+  </div>   
   </main>
   <footer class="text-muted">
     <div class="container">
