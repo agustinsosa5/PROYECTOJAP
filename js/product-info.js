@@ -16,18 +16,25 @@ async function articuloElegido() {
       localStorage.setItem("ID", id);
       window.location = "product-info.html"      
   }
-    
+
+  function getCat(id) {
+    localStorage.getItem("catID", id);
+    window.location = "products.html"      
+}
+
+   
     //cuando cargue la pagina , Crea el HTML con los datos del producto.
     document.addEventListener('DOMContentLoaded',async function mostrarArticulo(){ 
         let elemento = await articuloElegido(); 
+        console.log(elemento);
         let htmlcontenido = "";
-        htmlcontenido = `<div class="pt-4 mb-4">
-        <h2>${elemento.name}</h2>
+        htmlcontenido = `<div class="pt-5 mb-4 position-relative">
+        <h2>${elemento.name}</h2><button id="comprar"type="button" class="position-absolute top-50 end-0 btn btn-success">Comprar</button>
         <hr>
       </div>      
-      <div class="datos">
+      <div class="datos position-relative">
         <h5 class="fw-bold">Precio</h5 class="fw-bold">
-       <p>${elemento.currency}: ${elemento.cost}</p>
+       <p>${elemento.currency}: ${elemento.cost}</p><button type="button" class="position-absolute end-0 top-0 btn btn-light" onclick="getCat(id)"><i class="bi bi-arrow-left"></i> Volver al listado</button>
       </div>
       <div class="datos"> 
         <h5 class="fw-bold">Descripcion</h5 class="fw-bold">
@@ -53,6 +60,16 @@ async function articuloElegido() {
         </div>`;
     
       despliegue.innerHTML = htmlcontenido;
+
+        //click en el boton comprar, guarda el objeto en LocalStorage y redirige al carrito
+        let btncomprar = document.querySelector('#comprar');
+        btncomprar.addEventListener("click",()=>{
+            localStorage.setItem("articulo",JSON.stringify(elemento))     
+            window.location.replace('cart.html') 
+        })
+
+
+
 
 
         //Hacemos un FOR para obtener el Array de imagenes y las agregamos
