@@ -26,7 +26,6 @@ async function articuloElegido() {
     //cuando cargue la pagina , Crea el HTML con los datos del producto.
     document.addEventListener('DOMContentLoaded',async function mostrarArticulo(){ 
         let elemento = await articuloElegido(); 
-        console.log(elemento);
         let htmlcontenido = "";
         htmlcontenido = `<div class="pt-5 mb-4 position-relative">
         <h2>${elemento.name}</h2><button id="comprar"type="button" class="position-absolute top-50 end-0 btn btn-success">Comprar</button>
@@ -61,14 +60,13 @@ async function articuloElegido() {
     
       despliegue.innerHTML = htmlcontenido;
 
-        //click en el boton comprar, guarda el objeto en LocalStorage y redirige al carrito
+        //click en el boton comprar, guarda el objeto en LocalStorage y redirige al carrito        
         let btncomprar = document.querySelector('#comprar');
-        btncomprar.addEventListener("click",()=>{
-            localStorage.setItem("articulo",JSON.stringify(elemento))     
+        btncomprar.addEventListener("click",()=>{  
+            localStorage.setItem("articulo",JSON.stringify(elemento))    
             window.location.replace('cart.html') 
-        })
-
-
+         
+      })
 
 
 
