@@ -12,6 +12,31 @@ border: 1px solid #e08181;
 display: none;
 
 }
+/* The alert message box */
+.alert {
+  display: none;
+  padding: 20px;
+  background-color: #a8eb9b; /* Red */
+  color: rgb(28, 133, 37);
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: rgb(58, 54, 54);
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
 
 
 .direccionEnvios input {

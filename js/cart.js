@@ -45,9 +45,32 @@ async function carrito() {
       
       
       } 
+    
+          //estos 2 son los radios
+          const tarjcredito = document.querySelector('#tarjcredito');
+          const transferencia = document.querySelector('#transferencia');
+          //estos 3 son los input de tarjeta de credito
+          let numerotarje = document.querySelector('.credito1')
+          let codigoseg = document.querySelector('.credito2')
+          let vencim = document.querySelector('.credito3')          
+          //input de transferencia bancaria
+          let transfer = document.querySelector('.transfer');       
+          let inputCantidad = document.querySelector('#cantProd');
 
-       
-        
+
+          //Alerta de compra exitosa!
+      function alertSuccess (){
+            let credito1 = document.querySelector('input.credito1');
+            let credito2 = document.querySelector('input.credito2');
+            let credito3 = document.querySelector('input.credito3');
+           if (inputCantidad.value > 0 && inputCalle.value != '' && inputNumero.value != ''
+                && inputEsquina.value != '' && credito1.value != ''
+                && credito2.value != '' && credito3.value != '' || inputCantidad.value > 0 && inputCalle.value != '' && inputNumero.value != ''
+                && inputEsquina.value != '' && transfer.value != '' ) {
+                  document.getElementById('alert-success').style.display = 'block';                   
+        };        
+      } ;
+
         
         async function changeDelAgregado(){ 
             let calculo = await articuloElegido()
@@ -69,7 +92,7 @@ async function carrito() {
 
         //agrego a la lista del carrito el producto que le di comprar.
         
-        let carro = document.querySelector('#carro');
+        /* let carro = document.querySelector('#carro');
         let articuloCargado = JSON.parse(localStorage.getItem('articulo'))       
           carro.innerHTML+=`<div class="row align-items-center border-bottom">
           <div class="col-2" id="imagen">
@@ -88,21 +111,10 @@ async function carrito() {
             0
           </div>            
           </div>`;     
+ */
 
 
-
-          //modal deshabilitar segun la opcion elegida
-          
-          //estos 2 son los radios
-          const tarjcredito = document.querySelector('#tarjcredito');
-          const transferencia = document.querySelector('#transferencia');
-          //estos 3 son los input de tarjeta de credito
-          let numerotarje = document.querySelector('.credito1')
-          let codigoseg = document.querySelector('.credito2')
-          let vencim = document.querySelector('.credito3')          
-          //input de transferencia bancaria
-          let transfer = document.querySelector('.transfer');         
-          
+          //modal deshabilitar segun la opcion elegida         
          function desactivarTransf() {          
             transfer.disabled = true;
             numerotarje.disabled = false;
@@ -116,7 +128,7 @@ async function carrito() {
             codigoseg.disabled = true;
             vencim.disabled = true;
            };
-          
+           
          tarjcredito.addEventListener('focus', ()=>{
           desactivarTransf();
           transfer.value = '';
@@ -130,7 +142,7 @@ async function carrito() {
          })
               
                     
-        //condiciones de bonton Finalizar Compra
+        //variables para boton Finalizar Compra
         const btnfinalizar = document.querySelector('#btnfinalizar');
         let inputCalle = document.querySelector('#inputCalle');
         let inputNumero = document.querySelector('#inputNumero');
@@ -140,12 +152,12 @@ async function carrito() {
         let mostrardivcorner = document.querySelector('#corner');
         let mostrardivpago = document.querySelector('#pago');
         let pagoselect = document.querySelector('.pagoselect');
-        let guardar = document.querySelector('#guardar');
-
-
-
-        btnfinalizar.addEventListener('click',(e)=>{          
-          if (inputCalle.value.length == 0) {
+        let guardar = document.querySelector('#guardar');        
+        
+        
+        btnfinalizar.addEventListener('click',(e)=>{
+          
+          if (inputCalle.value.length == 0) {            
             e.preventDefault()
             inputCalle.focus();
              mostrardivcalle.style.display = 'block';
@@ -153,7 +165,7 @@ async function carrito() {
           } else {
             mostrardivcalle.style.display = 'none';
              inputCalle.style.border = '1px solid #ced4da';
-          }
+          };
 
           if (inputNumero.value.length == 0) {
             e.preventDefault()
@@ -163,9 +175,8 @@ async function carrito() {
           } else {
             mostrardivnumber.style.display = 'none';
             inputNumero.style.border = '1px solid #ced4da';
-          }
+          };
 
-          
           if (inputEsquina.value.length == 0 ) {
             e.preventDefault()
             inputEsquina.focus();
@@ -174,41 +185,48 @@ async function carrito() {
           } else {
             mostrardivcorner.style.display = 'none';
             inputEsquina.style.border  = '1px solid #ced4da';
-          }     
-                       
-
-          if (!premium.focus.true || !express.focus.true || !standard.focus.true){
-            e.preventDefault()            
-          } 
-
-          if(numerotarje.value == '' && codigoseg.value == '' && vencim.value == '' && transfer == ''){
+          };
+          
+          if(numerotarje.value == '' && codigoseg.value == '' && vencim.value == '' && transfer.value == ''){
             e.preventDefault();
-            alert('todo vacio');
             mostrardivpago.style.display = 'block';
           } else {
             mostrardivpago.style.display = 'none';
-          }
+          };
+          
+          if (inputCantidad.value < 1) {            
+            e.preventDefault();
+            inputCantidad.style.border = ' 1px solid red';
+          } else {
+            inputCantidad.style.border = '1px solid black';
+          };
 
-
-        })  
+            let costenvio = document.querySelector('#costenvio')
+            console.log(costenvio.textContent)
+           if (costenvio.textContent == "USD 0"){
+            e.preventDefault()            
+            document.querySelector('#envio').style.display = 'block';      
+          } else {            
+            document.querySelector('#envio').style.display = 'none';            
+          };        
+          
+            alertSuccess();
+        
+        }) ;      
+          
 
 
         guardar.addEventListener('click', ()=>{
-          if (numerotarje.value != '' ){ 
-            /* mostrardivpago.style.display = 'none'; */
+          if (tarjcredito.focus){ 
+            mostrardivpago.style.display = 'none';
             pagoselect.innerHTML = `<b>Tarjeta de Crédito</b> 
             <a type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">Seleccionar</a>`;
-          };
-          
-          
-          if (transfer.value != '') {              
+          }      
+          if (transferencia.focus) {              
             mostrardivpago.style.display = 'none';
             pagoselect.innerHTML = `<b>Transferencia Bancaria</b> 
             <a type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">Seleccionar</a>`;
-          } else {
-            /* mostrardivpago.style.display = 'block'; */
-          };
-      })
-
-          });
+          };})  
+        
+        });
     

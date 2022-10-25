@@ -68,7 +68,7 @@
               Costo
             </div>            
             <div class="col-2">
-              <input required minlength="1" type="number" id="cantProd" oninput="change()" class="text-center">
+              <input required minlength="1" min="1" type="number" id="cantProd" oninput="change()" class="text-center">
             </div>
             <div class="col-2" id="subtotal">
               0
@@ -78,11 +78,12 @@
         
 
       <div class="envios">
+        <form action="validation" class="needs-validation">      
         <h4 class="pb-4">Tipo de envío</h4>
+        <div class="invalid-feedback" id="envio">
+          Favor Seleccionar tipo de envío.
+        </div>
         <div class="form-check">
-          <div class="invalid-feedback" id="envio">
-            Favor Seleccionar tipo de envío.
-          </div>
           <input class="form-check-input" type="radio" name="flexRadioDefault" id="Premium">
           <label class="form-check-label" for="Premium">
             Premium 2 a 5 días (15%)
@@ -101,21 +102,27 @@
           </label>
         </div>       
       </div>
+      </form>  
+
+      <!-- <div class="alert" id="alerta">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        This is an alert box.
+      </div> -->
 
          <!-- Envío -->
           <h4 class="pt-4 pb-4">Dirección de envío</h4> 
-          <form action="validation" class="needs-validation" novalidate>
+          <form action="validation" class="needs-validation"  id="formulario" >
         <div class="row">
           <div class="form-group col-md-6">
             <label for="inputCalle">Calle</label>
-            <input type="text" class="form-control" id="inputCalle" placeholder="Calle" required>
+            <input type="text" class="form-control direccion" id="inputCalle" placeholder="Calle" required></input>
             <div class="invalid-feedback" id="street">
               Ingresa una calle.
             </div>
           </div>
           <div class="form-group col-md-4">
             <label for="inputNumero">Numero</label>
-            <input type="text" class="form-control" id="inputNumero" placeholder="Numero" required>
+            <input type="text" class="form-control direccion" id="inputNumero" placeholder="Numero" required></input>
             <div class="invalid-feedback" id="number">
               Ingresa un numero.
             </div>
@@ -123,7 +130,7 @@
         </div>
         <div class="form-group col-md-6 mt-3">
           <label for="inputEsquina">Esquina</label>
-          <input type="text" class="form-control" id="inputEsquina" placeholder="Esquina" required>
+          <input type="text" class="form-control direccion" id="inputEsquina" placeholder="Esquina" required></input>
           <div class="invalid-feedback" id="corner">
             Ingresa una Esquina.
           </div>
@@ -131,6 +138,12 @@
       </form>
          <hr> 
          <div> 
+
+          <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert-success">
+            <p>¡Has comprado con éxito!</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
 
           <!-- Costos -->
            <h4>Costos</h4>
@@ -192,16 +205,16 @@
           <div class="row">
             <div class="form-group col-md-6">
               <label for="credito1">Número de tarjeta</label>
-              <input type="text" class="form-control credito1"  placeholder="Número de tarjeta">
+              <input type="text" class="form-control credito1 creditos"  placeholder="Número de tarjeta">
             </div>
             <div class="form-group col-md-4">
               <label for="credito2">Codigo de seg.</label>
-              <input type="text" class="form-control credito2" placeholder="Codigo de seg." >
+              <input type="text" class="form-control credito2 creditos" placeholder="Codigo de seg." >
             </div>
           </div>
           <div class="form-group col-md-6 mt-3">
             <label for="credito3">Vencimiento (MM/AA)</label>
-            <input type="text" class="form-control credito3"  placeholder="Vencimiento (MM/AA)">
+            <input type="text" class="form-control credito3 creditos"  placeholder="Vencimiento (MM/AA)">
           </div>
  
           <div class="form-check mt-2">
@@ -236,6 +249,8 @@
 
 
   </div>  
+
+    
   </main>
   <footer class="text-muted">
     <div class="container">
