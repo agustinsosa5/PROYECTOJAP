@@ -59,23 +59,22 @@ async function carrito() {
 
 
           //Alerta de compra exitosa!
-      function alertSuccess (){
-            let credito1 = document.querySelector('input.credito1');
-            let credito2 = document.querySelector('input.credito2');
-            let credito3 = document.querySelector('input.credito3');
-           if (inputCantidad.value > 0 && inputCalle.value != '' && inputNumero.value != ''
-                && inputEsquina.value != '' && credito1.value != ''
-                && credito2.value != '' && credito3.value != '' || inputCantidad.value > 0 && inputCalle.value != '' && inputNumero.value != ''
-                && inputEsquina.value != '' && transfer.value != '' ) {
-                  document.getElementById('alert-success').style.display = 'block';                   
-        };        
+      function alertSuccess (){          
+       if (inputCantidad.value > 0 && inputCalle.value != '' && inputNumero.value != ''
+          && inputEsquina.value != '' && numerotarje.value != ''
+          && codigoseg.value != '' && vencim.value != '' || inputCantidad.value > 0 && inputCalle.value != '' && inputNumero.value != ''
+          && inputEsquina.value != '' && transfer.value != '' ) 
+            { document.getElementById('alert-success').style.display = 'block';};        
       } ;
 
         
-        async function changeDelAgregado(){ 
-            let calculo = await articuloElegido()
-            let cantprod = document.querySelector('#nuevoprod');   
-            subtotalnuevo.innerHTML =  `<b>USD: ${calculo.cost * cantprod.length}`;}
+        /* async function changeDelAgregado(){ 
+          let inputdelagregado = document.querySelector('input.inputnuevoprod');   
+          let arraydeagregado = JSON.parse(localStorage.getItem('articulo'))
+          console.log(arraydeagregado)
+            subtotalnuevo.innerHTML =  `<b>USD: ${arraydeagregado.elemento.cost * inputdelagregado.length}`;          
+           
+          } */
 
           
 
@@ -93,25 +92,32 @@ async function carrito() {
         //agrego a la lista del carrito el producto que le di comprar.
         
         /* let carro = document.querySelector('#carro');
-        let articuloCargado = JSON.parse(localStorage.getItem('articulo'))       
+        console.log(carro)
+        let arraydeproductos = JSON.parse(localStorage.getItem('articulo'))
+        arraydeproductos.forEach(articuloCargado => {
+          console.log(articuloCargado)
           carro.innerHTML+=`<div class="row align-items-center border-bottom">
-          <div class="col-2" id="imagen">
-          <img width="100" src="${articuloCargado.images[0]}" alt="Autocargado">         
+          <div class="col-2 imagen" id="">
+          <img width="100" src="${articuloCargado.elemento.images[0]}" alt="Autocargado">         
           </div>
-          <div class="col-2" id="nombre">
-            ${articuloCargado.name}
+          <div class="col-2 nombre" id="">
+            ${articuloCargado.elemento.name}
           </div>
-          <div class="col-2" id="cost">
-          ${articuloCargado.currency}: ${articuloCargado.cost}
+          <div class="col-2 cost" id="cost">
+          ${articuloCargado.elemento.currency}: ${articuloCargado.elemento.cost}
           </div>            
           <div class="col-2">
-            <input required minlength="1" type="number" id="nuevoprod" oninput="changeDelAgregado()" class="text-center">
+            <input required minlength="1" type="number" id="nuevoprod" oninput="changeDelAgregado()" class="text-center inputnuevoprod">
           </div>
           <div class="col-2" id="subtotalnuevo">
             0
           </div>            
           </div>`;     
- */
+          
+        });  */
+          
+          
+
 
 
           //modal deshabilitar segun la opcion elegida         

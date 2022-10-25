@@ -59,13 +59,28 @@ async function articuloElegido() {
         </div>`;
     
       despliegue.innerHTML = htmlcontenido;
+        
+        const art = {
+          elemento
+        };
+
+
+
 
         //click en el boton comprar, guarda el objeto en LocalStorage y redirige al carrito        
         let btncomprar = document.querySelector('#comprar');
-        btncomprar.addEventListener("click",()=>{  
-            localStorage.setItem("articulo",JSON.stringify(elemento))    
-            window.location.replace('cart.html') 
-         
+        btncomprar.addEventListener("click",()=>{ 
+          if (localStorage.getItem('articulo') == null) {
+            let arreglo = [];
+            arreglo.push(art);
+            localStorage.setItem('articulo', JSON.stringify(arreglo));
+            window.location.replace('cart.html');
+          } else {
+            let traerdatos = JSON.parse(localStorage.getItem('articulo'));
+            traerdatos.push(art);
+            localStorage.setItem('articulo',JSON.stringify(traerdatos));
+            window.location.replace('cart.html');
+          }
       })
 
 
