@@ -40,6 +40,13 @@ let getJSONData = function(url){
     });
 }
 
+function volverAlLogin() { 
+  if (!localStorage.getItem('CorreoElectronico')) {
+    alert('Debe inciar sesion')
+  document.getElementById('enlaceperfil').href = "./index.html";
+  }
+}
+
 document.addEventListener('DOMContentLoaded', ()=> {
 let capturoUser = localStorage.getItem('CorreoElectronico');
 let agregoLi = document.getElementsByTagName('li');
@@ -50,7 +57,7 @@ li.innerHTML = `<div class="dropdown">
 </button>
 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
   <li><a class="dropdown-item" href="./cart.html">Mi carrito</a></li>
-  <li><a class="dropdown-item" href="./my-profile.html">Mi perfil</a></li>
+  <li onclick="volverAlLogin()"><a id="enlaceperfil" class="dropdown-item" href="./my-profile.html">Mi perfil</a></li>
   <li><a class="dropdown-item" href="./index.html">Cerrar Sesion</a></li>
 </ul>
 </div>`;

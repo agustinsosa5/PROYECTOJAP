@@ -50,10 +50,58 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  <main>   
+    
+    <div class="container align-items-center w-50">   
+      <div class="position-relative">
+        <div class="top-0 start-0"> <h2 class="pt-4 pb-4 ps-4">Perfil</h2></div>
+        <div class="position-absolute top-0 end-0"><img src="./img/img_perfil.png" class="img-thumbnail" alt="Fotodeperfil" width="100" height="100" id="fotoperfil"></div>  
+         </div>
+    
+           <hr>       
+            <form class="row g-2">
+              <div class="col-6">
+                <label for="prinom">Primer nombre*</label>
+                <input type="text" class="form-control" id="prinom" required>
+              </div>
+
+              <div class="col-6">
+                <label for="segnom">Segundo nombre</label>
+                <input type="text" class="form-control" id="segnom">
+              </div>
+              
+              <div class="col-6">
+                <label for="priape">Primer apellido*</label>
+                <input type="text" class="form-control" id="priape" required>
+              </div>
+              
+              <div class="col-6">
+                <label for="segape">Segundo apellido</label>
+                <input type="text" class="form-control" id="segape">
+              </div>
+
+              <div class="col-6">
+                <label for="inputemail">E-mail</label> 
+                <input type="text" class="form-control" id="inputemail">
+              </div>
+
+              <div class="col-6">
+                <label for="image">Imagen de perfil</label>
+                <input type="file" class="form-control" id="inputimage">
+              </div> 
+
+              <div class="col-6">
+                <label for="tel">Telefóno*</label> 
+                <input type="text" class="form-control" id="tel" required>
+              </div>  
+
+              <div class="pt-4">
+                <hr>
+              <button type="button" class="btn btn-primary" id="btnguardar">Guardar cambios</button>
+            </div>
+            </form>
+           
+            
       </div>
     </div>
   </main>

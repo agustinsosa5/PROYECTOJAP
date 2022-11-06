@@ -5,15 +5,12 @@ async function carrito() {
     } else {
         throw new Error(respuesta.status);
     }}; 
-
     
-     //Calculo de Costos
      let premium = document.querySelector('#Premium');
      let express = document.querySelector('#Express');
      let standard = document.querySelector('#Standard');          
      let costenvio = document.querySelector('#costenvio')
-     let total = document.querySelector('#total')
-     
+     let total = document.querySelector('#total')     
 
         //funcion cambia el valor de los campos en tiempo real y calcula segun opcion de envío.
     async function change(){ 
@@ -65,17 +62,7 @@ async function carrito() {
           && codigoseg.value != '' && vencim.value != '' || inputCantidad.value > 0 && inputCalle.value != '' && inputNumero.value != ''
           && inputEsquina.value != '' && transfer.value != '' ) 
             { document.getElementById('alert-success').style.display = 'block';};        
-      } ;
-
-        
-        /* async function changeDelAgregado(){ 
-          let inputdelagregado = document.querySelector('input.inputnuevoprod');   
-          let arraydeagregado = JSON.parse(localStorage.getItem('articulo'))
-          console.log(arraydeagregado)
-            subtotalnuevo.innerHTML =  `<b>USD: ${arraydeagregado.elemento.cost * inputdelagregado.length}`;          
-           
-          } */
-
+      } ;     
           
 
     document.addEventListener('DOMContentLoaded',async () => {
@@ -87,37 +74,7 @@ async function carrito() {
         const compras = await carrito();        
         imagen.innerHTML = `<img width="100" src="${compras.articles[0].image}" alt="Autocargado">`;
         nombre.innerHTML = compras.articles[0].name
-        costo.innerHTML = 'USD: '+`${compras.articles[0].unitCost}`     
-
-        //agrego a la lista del carrito el producto que le di comprar.
-        
-        /* let carro = document.querySelector('#carro');
-        console.log(carro)
-        let arraydeproductos = JSON.parse(localStorage.getItem('articulo'))
-        arraydeproductos.forEach(articuloCargado => {
-          console.log(articuloCargado)
-          carro.innerHTML+=`<div class="row align-items-center border-bottom">
-          <div class="col-2 imagen" id="">
-          <img width="100" src="${articuloCargado.elemento.images[0]}" alt="Autocargado">         
-          </div>
-          <div class="col-2 nombre" id="">
-            ${articuloCargado.elemento.name}
-          </div>
-          <div class="col-2 cost" id="cost">
-          ${articuloCargado.elemento.currency}: ${articuloCargado.elemento.cost}
-          </div>            
-          <div class="col-2">
-            <input required minlength="1" type="number" id="nuevoprod" oninput="changeDelAgregado()" class="text-center inputnuevoprod">
-          </div>
-          <div class="col-2" id="subtotalnuevo">
-            0
-          </div>            
-          </div>`;     
-          
-        });  */
-          
-          
-
+        costo.innerHTML = 'USD: '+`${compras.articles[0].unitCost}`
 
 
           //modal deshabilitar segun la opcion elegida         
@@ -220,7 +177,6 @@ async function carrito() {
         
         }) ;      
           
-
 
         guardar.addEventListener('click', ()=>{
           if (tarjcredito.focus){ 

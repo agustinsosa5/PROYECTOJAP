@@ -189,8 +189,7 @@ async function listado() {
       }    
       document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
         }
-      }
-      
+      }  
      
       
       //llama a las dos funciones para ordenar y muestrar los productos.

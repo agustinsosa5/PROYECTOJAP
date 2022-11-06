@@ -64,9 +64,6 @@ async function articuloElegido() {
           elemento
         };
 
-
-
-
         //click en el boton comprar, guarda el objeto en LocalStorage y redirige al carrito        
         let btncomprar = document.querySelector('#comprar');
         btncomprar.addEventListener("click",()=>{ 
